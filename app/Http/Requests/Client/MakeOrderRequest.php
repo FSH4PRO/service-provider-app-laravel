@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Provider;
+namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreServiceRequest extends FormRequest
+class MakeOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,10 @@ class StoreServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255|nullable',
-            'price' => 'required|numeric|min:0',
-            'category_id' => 'required|exists:categories,id',
-
+            'service_id' => 'required|exists:services,id',
+            'status' => 'string|in:pending,completed,rejected,approved',
+            'notes' => 'string|nullable',
+            
         ];
     }
 }

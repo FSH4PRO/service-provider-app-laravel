@@ -24,11 +24,15 @@ class Service extends Model
 
     public function provider()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class , 'provider_id');
     }
 
-    // public function orders()
-    // {
-    //     return $this->hasMany(Order::class);
-    // }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function favoratedBy(){
+        return $this->belongsToMany(User::class , 'favorites' , 'service_id' , 'user_id');
+    }
 }

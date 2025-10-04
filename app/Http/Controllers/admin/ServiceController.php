@@ -27,12 +27,12 @@ class ServiceController extends Controller
         ]);
 
         $service = $this->serviceService->changeStatus($id, $request->status);
-        return response()->json(['message' => 'Service status updated successfully', 'data' => $service]);
+        return redirect()->back()->with('message', 'Service status updated successfully');
     }
 
     public function destroy($id)
     {
         $this->serviceService->delete($id);
-        return response()->json(['message' => 'Service deleted successfully']);
+        return redirect()->back()->with('message', 'Service deleted successfully'); 
     }
 }
