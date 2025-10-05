@@ -5,6 +5,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -33,11 +34,20 @@ Route::prefix('admin')->group(function () {
     // Orders
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
 
+    //users
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
 
     // Dashboard + protected routes
     Route::middleware('auth')->group(function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+        //users
+        Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
 
         // Categories
         Route::get('categories', [CategoryController::class, 'index'])->name('admin.categories.index');

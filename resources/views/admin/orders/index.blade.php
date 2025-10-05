@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2 class="mb-4">قائمة الطلبات</h2>
+        <h2 class="mb-4">Orders List</h2>
 
         <form method="GET" action="{{ route('admin.orders.index') }}" class="row mb-3 g-2">
             <div class="col-md-4">
